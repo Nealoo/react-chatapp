@@ -1,3 +1,13 @@
+## react chatapp
+
+this is a just a simple practice for the `react` + `express` + `mongoDB`
+it's also a practice of the `webpack` `es6` and other things.
+
+
+**content below is from the create-react-app readme file**
+-----------------------
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
