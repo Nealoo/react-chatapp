@@ -15,20 +15,27 @@ const User = mongoose.model('user', new mongoose.Schema({
   age: {type:Number,require:true}
 }))
 
-
 //find findOne create
 
-User.create({
-  user: 'test',
-  age: 666
-},function(err, doc){
-  if (!err){
-    console.log('success create');
-    console.log(doc);
-  }else{
-    console.log('failed create');
-  }
-})
+// User.create({
+//   user: 'test',
+//   age: 666
+// },function(err, doc){
+//   if (!err){
+//     console.log('success create');
+//     console.log(doc);
+//   }else{
+//     console.log('failed create');
+//   }
+// })
+
+// User.remove({age: 666},function(err, doc){
+//   console.log(doc);
+// })
+
+// User.update({age: 666}, {'$set': {user: 'new name'}}, function (err, doc) {
+//   console.log(doc);
+// })
 
 const app = express()
 
@@ -37,7 +44,11 @@ app.get('/',function(req,res){
 })
 
 app.get('/data',function(req,res){
-  res.json({text:'vale'});
+
+  User.find({}, function(err, doc){
+    res.json(doc);
+  })
+  //res.json({text:'vale'});
 })
 
 app.listen(9093,function(){
