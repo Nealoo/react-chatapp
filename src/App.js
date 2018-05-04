@@ -1,4 +1,6 @@
 import React from 'react';
+import {Button} from 'antd-mobile';
+import 'antd-mobile/dist/antd-mobile.css';
 
 class App extends React.Component{
   render(){
@@ -33,6 +35,10 @@ class Test extends React.Component{
     })
   }
 
+  componentWillMount() {
+    console.log('component will be loaded');
+  }
+
   render(){
     return (
       <div>
@@ -40,7 +46,7 @@ class Test extends React.Component{
         <ul>{this.state.testArray.map(
           v=>{return <li key={v}>{v}</li>}
         )}</ul>
-        <button onClick={this.addArray}>add </button>
+        <Button onClick={this.addArray}>add </Button>
       </div>
     )
   }
