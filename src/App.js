@@ -1,55 +1,27 @@
 import React from 'react';
-import {Button} from 'antd-mobile';
-import 'antd-mobile/dist/antd-mobile.css';
+import {connect} from 'react-redux';
+import { addGun, delayAdd } from './index.redux.js'
 
-class App extends React.Component{
-  render(){
-    const varb = 'vb';
+class App extends React.Component {
+
+  render() {
+    const addGun = this.props.addGun;
+    const delayAdd = this.props.delayAdd;
+    const num = this.props.num;
     return (
       <div>
-        <h1>Hello, {varb}</h1>
-        <Test ta='neal here'></Test>
-        <TestFunc name="neal test" />
+        <h1>now the GUN is {num}</h1>
+        <button onClick={addGun}>add GUN</button>
+        <button onClick={delayAdd}>delay add</button>
       </div>
     )
   }
 }
 
-function TestFunc(props) {
-  return <h2>thing is :{props.name}</h2>
+const mapStateToProps = (state)=>{
+  return {num:state};
 }
-
-class Test extends React.Component{
-  constructor(props){
-    super(props);
-    this.state = {
-      testArray: [11,33,44]
-    }
-
-    this.addArray = this.addArray.bind(this);
-  }
-
-  addArray(){
-    this.setState({
-      testArray: [...this.state.testArray, 'some new value'+Math.random()]
-    })
-  }
-
-  componentWillMount() {
-    console.log('component will be loaded');
-  }
-
-  render(){
-    return (
-      <div>
-        <div>hi there from ({this.props.ta})</div>
-        <ul>{this.state.testArray.map(
-          v=>{return <li key={v}>{v}</li>}
-        )}</ul>
-        <Button onClick={this.addArray}>add </Button>
-      </div>
-    )
-  }
-}
+const actionCreators = { addGun, delayAdd };
+App = connect(mapStateToProps, actionCreators)(App);
 
 export default App;
