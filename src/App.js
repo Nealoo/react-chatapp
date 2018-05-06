@@ -2,6 +2,16 @@ import React from 'react';
 import {connect} from 'react-redux';
 import { addGun, delayAdd } from './index.redux.js'
 
+// const mapStateToProps = (state)=>{
+//   return {num:state};
+// }
+// const actionCreators = { addGun, delayAdd };
+//App = connect(mapStateToProps, actionCreators)(App);
+
+@connect(
+  state=>({num:state.counter}),
+  { addGun, delayAdd }
+)
 class App extends React.Component {
 
   render() {
@@ -17,11 +27,5 @@ class App extends React.Component {
     )
   }
 }
-
-const mapStateToProps = (state)=>{
-  return {num:state};
-}
-const actionCreators = { addGun, delayAdd };
-App = connect(mapStateToProps, actionCreators)(App);
 
 export default App;
