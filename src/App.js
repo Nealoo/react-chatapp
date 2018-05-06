@@ -20,8 +20,8 @@ class App extends React.Component {
     const num = this.props.num;
     return (
       <div>
-        <h1>now the GUN is {num}</h1>
-        <button onClick={addGun}>add GUN</button>
+        <h1>now the Num is {num}</h1>
+        <button onClick={addGun}>add NUM</button>
         <button onClick={delayAdd}>delay add</button>
       </div>
     )
