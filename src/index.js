@@ -4,8 +4,8 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import {Provider} from 'react-redux';
 import {BrowserRouter, Route, Redirect, Switch} from 'react-router-dom';
-import Auth from './Auth';
-import Dashboard from './Dashboard';
+import Login from './container/login/Login';
+import Register from './container/register/Register';
 import reducers from './reducer';
 
 const reduxDevtools = window.devToolsExtension;
@@ -14,15 +14,14 @@ const store = createStore(reducers, compose(
   reduxDevtools?reduxDevtools():()=>{}
 ));
 
-  ReactDom.render((
-    <Provider store={store}>
-      <BrowserRouter>
-        <Switch>
-          <Route path='/login' component={Auth}></Route>
-          <Route path='/dashboard' component={Dashboard}></Route>
-          <Redirect to='/login'></Redirect>
-        </Switch>
-      </BrowserRouter>
-    </Provider>
+ReactDom.render((
+  <Provider store={store}>
+    <BrowserRouter>
+      <Switch>
+        <Route path='/login' component={Login}></Route>
+        <Route path='/register' component={Register}></Route>
+      </Switch>
+    </BrowserRouter>
+  </Provider>
 
-  ), document.getElementById('root'));
+), document.getElementById('root'));
