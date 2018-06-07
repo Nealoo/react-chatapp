@@ -27,12 +27,6 @@ for(let m in models){
   mongoose.model(m, new mongoose.Schema(models.m))
 }
 
-// model and schema
-const User = mongoose.model('user', new mongoose.Schema({
-  user: {type:String,require:true},
-  age: {type:Number,require:true}
-}));
-
 module.exports = {
   getModel:function(name){
     return mongoose.model(name)
