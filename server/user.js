@@ -1,4 +1,5 @@
 const express = require('express');
+const utils = require('utility');
 const Router = express.Router();
 const model = require('./model');
 
@@ -15,17 +16,15 @@ Router.get('/list',function(req, res){
 });
 
 Router.post('/register',function(req, res){
-  console.log(req.body);
   const {user, pwd, type} = req.body;
-  User.findOne({user:user},function(err,doc){
+  User.findOne({user},function(err,doc){
     if(doc){
       return res.json({code:1,msg:'user name repeat!'});
     }
-    User.create({user,pwd,type},function(err, doc){
+    User.create({user,pwd:md5Pwd(pwd),type},function(err, doc){
       if(err){
         return res.json({code:1,msg:'backend error'});
       }else{
-        console.log(doc);
         return res.json({code:0});
       }
     });
@@ -33,3 +32,8 @@ Router.post('/register',function(req, res){
 });
 
 module.exports = Router;
+
+function md5Pwd(pwd){
+  const pwdSalt = 'thesalt$ds+ah'+pwd+'f&iaod_*D2fhBdsf';
+  return utils.md5(utils.md5(pwdSalt));
+}

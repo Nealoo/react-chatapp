@@ -1,6 +1,6 @@
 import axios from 'axios';
 import thunk from 'redux-thunk';
-import getRedirectPath from '../util.js';
+import {getRedirectPath} from '../util.js';
 
 const initState={
   redirectTo:'',

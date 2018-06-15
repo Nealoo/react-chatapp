@@ -2,6 +2,7 @@ import React from 'react';
 import Logo from '../../component/logo/Logo';
 import {List, InputItem, Radio, Button} from 'antd-mobile';
 import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom';
 import {register} from '../../redux/user.redux';
 
 @connect(
@@ -34,6 +35,7 @@ export default class Register extends React.Component{
     const RadioItem = Radio.RadioItem;
     return (
       <div>
+        {this.props.redirectTo? <Redirect to={this.props.redirectTo} /> : null}
         <Logo />
         <h1>Register page</h1>
         {this.props.msg}
