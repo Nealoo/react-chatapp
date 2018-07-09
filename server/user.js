@@ -15,6 +15,10 @@ Router.get('/list',function(req, res){
   });
 });
 
+Router.post('/login',function(req,res){
+  const {user, pwd} = req.body;
+});
+
 Router.post('/register',function(req, res){
   const {user, pwd, type} = req.body;
   User.findOne({user},function(err,doc){
