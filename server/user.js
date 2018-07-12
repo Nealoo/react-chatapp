@@ -15,8 +15,24 @@ Router.get('/list',function(req, res){
   });
 });
 
+Router.get('/removeuser',function(req, res){
+  User.remove({'user':req.query.user},function(err,doc){
+    if(err){
+      return res.json({code:1,msg:err});
+    }else{
+      return res.json({code:0,doc:doc});
+    }
+  });
+});
+
 Router.post('/login',function(req,res){
   const {user, pwd} = req.body;
+  User.findOne({user,pwd:md5Pwd(pwd)},function(err,doc){
+    if(!doc){
+      return res.json({code:1,msg:'username or pwd is incorrect'});
+    }
+    return res.json({code:0,data:doc});
+  })
 });
 
 Router.post('/register',function(req, res){
